@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getWardrobe } from '../services/clothingService';
+import { getWardrobe, deleteClothing } from '../services/clothingService';
 import { Clothing } from '../types/Clothing';
 import ClothingCard from '../components/ClothingCard';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -9,6 +9,17 @@ import { FiPlus } from 'react-icons/fi';
 const Wardrobe: React.FC = () => {
   const [clothes, setClothes] = useState<Clothing[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const handleDelete = async (id: number) => {
+    if (window.confirm('Are you sure you want to delete this item?')) {
+      try {
+        await deleteClothing(id);
+        setClothes(clothes.filter(c => c.id !== id));
+      } catch (error) {
+        console.error('Error deleting clothing:', error);
+      }
+    }
+  };
 
   useEffect(() => {
     const fetchWardrobe = async () => {
@@ -46,9 +57,9 @@ const Wardrobe: React.FC = () => {
           <Link to="/add-clothing" className="btn btn-primary">Add Your First Item</Link>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {clothes.map(item => (
-            <ClothingCard key={item.id} clothing={item} />
+            <ClothingCard key={item.id} clothing={item} onDelete={handleDelete} />
           ))}
         </div>
       )}
