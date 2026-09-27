@@ -37,7 +37,7 @@ const Register: React.FC = () => {
           <p className="text-text-secondary">Start styling with AI today</p>
         </div>
         
-        {error && <div className="bg-error bg-opacity-20 text-error p-3 rounded-lg mb-6 text-sm text-center">{error}</div>}
+        {error && <div className="bg-error bg-opacity-20 text-text-primary p-3 rounded-lg mb-6 text-sm text-center font-medium">{error}</div>}
         
         <form onSubmit={handleSubmit}>
           <div className="form-group">
