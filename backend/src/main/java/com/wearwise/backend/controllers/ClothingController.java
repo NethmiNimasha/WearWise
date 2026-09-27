@@ -1,29 +1,32 @@
 package com.wearwise.backend.controllers;
 
+import com.wearwise.backend.models.AppClothing;
+import com.wearwise.backend.repositories.ClothingRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/clothing")
 public class ClothingController {
+
+    @Autowired
+    private ClothingRepository clothingRepository;
+
     @GetMapping
-    public ResponseEntity<?> getClothing() {
-        return ResponseEntity.ok(List.of(
-            Map.of("id", 1, "name", "Classic Blue Jeans", "category", "Bottoms", "color", "Blue", "style", "Casual", "imageUrl", "https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&q=80"),
-            Map.of("id", 2, "name", "White T-Shirt", "category", "Tops", "color", "White", "style", "Casual", "imageUrl", "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&q=80")
-        ));
+    public ResponseEntity<List<AppClothing>> getClothing() {
+        return ResponseEntity.ok(clothingRepository.findAll());
     }
 
     @PostMapping
-    public ResponseEntity<?> addClothing(@RequestBody Map<String, Object> clothing) {
-        clothing.put("id", System.currentTimeMillis());
-        return ResponseEntity.ok(clothing);
+    public ResponseEntity<AppClothing> addClothing(@RequestBody AppClothing clothing) {
+        return ResponseEntity.ok(clothingRepository.save(clothing));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteClothing(@PathVariable Long id) {
+        clothingRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }
 }
