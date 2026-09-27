@@ -45,7 +45,7 @@ public class OutfitController {
             String bottomSuggestion = "some nice tailored trousers or dark jeans";
             
             if (occ.contains("funeral") || occ.contains("wedding") || occ.contains("formal")) {
-                topSuggestion = "a dark, formal button-down shirt or blouse";
+                topSuggestion = "a white or dark, formal button-down shirt or blouse";
                 bottomSuggestion = "matching dark dress pants or a formal skirt";
             } else if (occ.contains("gym") || occ.contains("workout") || occ.contains("run")) {
                 topSuggestion = "a moisture-wicking athletic top";

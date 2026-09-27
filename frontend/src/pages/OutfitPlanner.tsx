@@ -52,13 +52,29 @@ const OutfitPlanner: React.FC = () => {
           <form onSubmit={handleGenerate}>
             <div className="form-group">
               <label className="form-label">Occasion</label>
-              <input required type="text" className="form-control" placeholder="e.g. Office meeting, Date night" 
-                value={formData.occasion} onChange={e => setFormData({...formData, occasion: e.target.value})} />
+              <select required className="form-control" value={formData.occasion} onChange={e => setFormData({...formData, occasion: e.target.value})}>
+                <option value="" disabled>Select an occasion...</option>
+                <option value="Office meeting">Office meeting</option>
+                <option value="Casual hang out">Casual hang out</option>
+                <option value="Date night">Date night</option>
+                <option value="Party">Party</option>
+                <option value="Gym / Workout">Gym / Workout</option>
+                <option value="Wedding">Wedding</option>
+                <option value="Funeral">Funeral</option>
+                <option value="Formal event">Formal event</option>
+              </select>
             </div>
             <div className="form-group">
               <label className="form-label">Weather</label>
-              <input required type="text" className="form-control" placeholder="e.g. Sunny and warm" 
-                value={formData.weather} onChange={e => setFormData({...formData, weather: e.target.value})} />
+              <select required className="form-control" value={formData.weather} onChange={e => setFormData({...formData, weather: e.target.value})}>
+                <option value="" disabled>Select weather...</option>
+                <option value="Sunny and hot">Sunny and hot</option>
+                <option value="Warm">Warm</option>
+                <option value="Cool and breezy">Cool and breezy</option>
+                <option value="Cold">Cold</option>
+                <option value="Winter / Snow">Winter / Snow</option>
+                <option value="Rainy">Rainy</option>
+              </select>
             </div>
             <div className="form-group">
               <label className="form-label">Preferred Style</label>
