@@ -2,10 +2,6 @@
 
 WearWise is an AI-powered outfit planner and wardrobe management application. It helps users digitize their wardrobe and provides intelligent outfit recommendations based on their clothing items.
 
-## 🎥 Demo
-
-<video src="assets/demo.mp4" controls="controls" width="100%"></video>
-
 ## 🌟 Features
 
 *   **User Authentication**: Secure signup and login functionality.
